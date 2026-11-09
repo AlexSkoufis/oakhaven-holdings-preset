@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <circle cx="26" cy="30" r="20" fill="none" stroke="#2d3e50" stroke-width="7"/><circle cx="26" cy="30" r="5" fill="#2d3e50"/>
+  <text x="62" y="30" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#14181a">Riverstone</text>
+  <text x="62" y="51" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" letter-spacing="2.5" fill="#4b4f52">CAPITAL</text>
+</svg>

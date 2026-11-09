@@ -1,0 +1,290 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Design tokens
+   Gold #f1b543, amber #e89a3f and ink, extended with warm editorial
+   neutrals. Change the palette here.
+------------------------------------------------------------------- */
+:root {
+  --ink: #14181a;
+  --ink-2: #1d2326;
+  --ink-3: #2a3134;
+  --paper: #f4efe6;
+  --paper-2: #ebe3d5;
+  --paper-3: #e0d5c3;
+  --stone: #6f675d;
+  --stone-light: #a79d90;
+  --gold: #f1b543;
+  --amber: #e89a3f;
+  --ember: #9a5a12; /* amber darkened for AA text on paper */
+  --line-dark: rgb(20 24 26 / 0.14);
+  --line-light: rgb(244 239 230 / 0.16);
+
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --max: 1680px;
+  --header-h: 76px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-stone: var(--stone);
+  --color-stone-light: var(--stone-light);
+  --color-gold: var(--gold);
+  --color-amber: var(--amber);
+  --color-ember: var(--ember);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --ease-out-expo: var(--ease-out);
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Typography scale (fluid)
+------------------------------------------------------------------- */
+@layer components {
+  .t-mega {
+    font-family: var(--font-display);
+    font-size: clamp(3.6rem, 1.5rem + 9.2vw, 12.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    font-weight: 350;
+  }
+  .t-display {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 1.3rem + 5.4vw, 7.25rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 350;
+  }
+  .t-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 1.4rem + 3.6vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 380;
+  }
+  .t-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.25rem + 2vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 400;
+  }
+  .t-h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 1.1rem + 0.9vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-weight: 420;
+  }
+  .t-lead {
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .t-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .t-num {
+    font-family: var(--font-display);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+  }
+  .italic-accent {
+    font-style: italic;
+    font-weight: 300;
+    font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  }
+
+  /* layout primitives */
+  .shell {
+    width: 100%;
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .prose-measure {
+    max-width: 62ch;
+  }
+
+  /* Animated underline used across links */
+  .u-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    transition: background-size 0.6s var(--ease-out);
+    padding-bottom: 2px;
+  }
+  .u-link:hover,
+  .u-link:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+
+  /* Grain overlay for warmth */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .hairline {
+    height: 1px;
+    background: currentColor;
+    opacity: 0.16;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: -100px;
+    z-index: 200;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+}
+
+/* Image reveal helper: content is always visible without JS. */
+.img-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-3);
+}
+.img-frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.img-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(18px);
+  transform: scale(1.1);
+  transition: opacity 0.8s var(--ease-out);
+}
+
+/* Reveal masks: clip for the animation, but leave room for accents
+   above and descenders below so glyphs are never cut. Negative
+   margins cancel the padding, so layout does not move. */
+.sl-mask,
+.sw-mask,
+.sc-mask,
+.text-reveal {
+  overflow: clip;
+  padding: 0.14em 0.06em 0.22em;
+  margin: -0.14em -0.06em -0.22em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes scrollcue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

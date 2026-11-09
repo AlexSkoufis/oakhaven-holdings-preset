@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 60" width="165" height="60">
+  <path d="M4 52 L28 8 L40 8 L16 52 Z" fill="#a5551d"/><path d="M24 52 L48 8 L52 8 L28 52 Z" fill="#a5551d" opacity="0.55"/>
+  <text x="62" y="30" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#14181a">Kestrel</text>
+  <text x="62" y="51" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" letter-spacing="2.5" fill="#4b4f52">LOGISTICS</text>
+</svg>

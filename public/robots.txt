@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Demo site: remove these two lines when the site goes live.
